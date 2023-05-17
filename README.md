@@ -15,8 +15,8 @@ There in rooms , users can chat.
 
 ## Demo
 
-Insert gif or link to demo
-![Alt Text]([https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif](https://github.com/autumn-absconds/ChattyBox/blob/master/ezgif.com-video-to-gif.gif))
+
+![Demo GIF](https://imgur.com/S3AjIny)
 
 
 
