@@ -5,7 +5,7 @@ import SignOut from './components/SignOut';
 import Cookies from 'universal-cookie';
 import EnterRoom from './components/EnterRoom';
 import Chat from './components/Chat';
-import './components/Style.css';
+import './App.css'
 import Error from './components/Error.jsx'
 import Footer from './components/Footer.jsx';
 
@@ -26,7 +26,7 @@ function App() {
 
         </Routes>
         {isAuth && <SignOut setIsAuth={setIsAuth} setIsRoom={setIsRoom} isRoom={isRoom} />}
-{/* <Footer/> */}
+<Footer/>
       </Router>
     </>
   );
