@@ -61,7 +61,8 @@ const SignIn = (props) => {
         </div>
 
       </div>
-      <Footer/>
+      
+      {/* <Footer/> */}
     </>
   )
 }
