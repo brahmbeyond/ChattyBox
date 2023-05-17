@@ -11,7 +11,7 @@ const Welcome = () => {
                 </h1>
                 <h3> Chat with Ease and Simplicity on ChattyBox</h3>
             </div>
-          
+
         </>
     )
 }

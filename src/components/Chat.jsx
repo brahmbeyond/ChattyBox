@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { db, auth } from '../firebase-config'
-import { addDoc, doc, collection, onSnapshot, orderBy, query, serverTimestamp, where, deleteDoc } from 'firebase/firestore'
-import Rooms from './Rooms';
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where } from 'firebase/firestore'
 import { useParams } from 'react-router-dom';
-
 import { useNavigate } from "react-router-dom"
 
 const Chat = () => {
@@ -23,20 +21,11 @@ const Chat = () => {
             snapshot.forEach((doc) => {
                 messages.push({ ...doc.data(), id: doc.id });
             });
-            // console.log(messages);
             setDisplayMessages(messages);
         });
 
         return () => unsuscribe();
     }, [roomName])
-
-    // const deletRoom = async () => {
-    //     console.log(roomName)
-    //     await deleteDoc(doc(db, "messages", roomName));
-    //     // await db.collection("messages").document(roomName).delete()
-       
-
-    // }
 
     const sendMessage = async (event) => {
         event.preventDefault();
@@ -59,14 +48,7 @@ const Chat = () => {
 
 
         <div className='container'>
-            {/* <div  >
-                <Rooms />
-            </div> */}
             <div className='chat'>
-                {/* <div>
-                    <button className='deleteRoom' onClick={deletRoom}>delete</button>
-                </div> */}
-
                 <div>
                     <button className='homeButton' onClick={() => navigate(-1)}>Go Back Home</button>
                 </div>
@@ -76,9 +58,7 @@ const Chat = () => {
                 <div>
                     {displayMessages.map((msg) => {
                         return <div className='eachMessage' key={msg.id}>
-                          
-                            <img src={msg.pic } alt="" className='profilePic' />
-                            {/* <h4 className={`${msg.email} === ${auth.currentUser.email}?'sameUser':'OtherUser'}`}>{msg.user}</h4 > */}
+                            <img src={msg.pic} alt="" className='profilePic' />
                             <h4 className='userName'>{msg.user}</h4 >
                             <p className='userMessage'> {msg.text}</p>
                         </div>

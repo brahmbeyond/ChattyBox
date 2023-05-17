@@ -1,26 +1,18 @@
 import React, { useState } from 'react'
-import Chat from './Chat';
 import Rooms from './Rooms';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const EnterRoom = () => {
-
-    // const isRoom = false;
     const [roomName, setRoomName] = useState("");
     const [isRoom, setIsRoom] = useState(false)
-    // const [refreshRoom, setRefreshRoom] = useState(Math.random * 100);
     const history = useNavigate();
     const enterRoomFunction = () => {
         setIsRoom(true)
         refreshRoomFun()
-        console.log("namd rrim")
     }
 
 
     if (isRoom) {
-        // return <div><Chat roomName={roomName} /></div>
         history(`./Chat/${roomName}`)
         setIsRoom(false)
     }

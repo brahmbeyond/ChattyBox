@@ -8,12 +8,12 @@ const Rooms = () => {
 
     const [displayRooms, setDisplayRooms] = useState([]);
     const [roomName, setRoomName] = useState("");
-const history = useNavigate();
+    const history = useNavigate();
 
     const redirectToChatRoom = (room) => {
         setRoomName(room)
-     
-       history(`./Chat/${room}`)
+
+        history(`./Chat/${room}`)
 
     }
 
@@ -29,12 +29,10 @@ const history = useNavigate();
 
         });
         setDisplayRooms(data);
-        // console.log(data);
     }
 
     useEffect(() => {
         getAll();
-        console.log("rerender")
     }, [])
 
     let filteredRoom = [];

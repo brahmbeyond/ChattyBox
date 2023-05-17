@@ -21,12 +21,12 @@ function App() {
 
         <Routes>
           <Route path="/" element={isAuth ? <EnterRoom setIsRoom={setIsRoom} isRoom={isRoom} /> : <SignIn setIsAuth={setIsAuth} />} />
-          <Route exact path="/chat/:roomName" element={ <Chat />} />
+          <Route exact path="/chat/:roomName" element={<Chat />} />
           <Route path="*" element={<Error />} />
 
         </Routes>
         {isAuth && <SignOut setIsAuth={setIsAuth} setIsRoom={setIsRoom} isRoom={isRoom} />}
-<Footer/>
+        <Footer />
       </Router>
     </>
   );

@@ -3,10 +3,8 @@ import { auth, googleProvider, githubProvider } from '../firebase-config';
 import { signInWithPopup } from "firebase/auth";
 import Cookies from 'universal-cookie'
 import Welcome from './Welcome';
-import Footer from './Footer';
 
 const cookies = new Cookies();
-
 
 const SignIn = (props) => {
 
@@ -14,10 +12,7 @@ const SignIn = (props) => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       cookies.set("auth-token", result.user.refreshToken)
-      // console.log(cookies);
-      // console.log(result);
       props.setIsAuth(true);
-      console.log("siggned")
     }
     catch (error) {
       console.log(error)
@@ -28,10 +23,7 @@ const SignIn = (props) => {
     try {
       const result = await signInWithPopup(auth, githubProvider);
       cookies.set("auth-token", result.user.refreshToken)
-      console.log(cookies);
-      console.log(result);
       props.setIsAuth(true);
-      console.log("siggned")
     }
     catch (error) {
       console.log(error)
@@ -41,7 +33,7 @@ const SignIn = (props) => {
     <>
       <Welcome />
 
-    
+
       <div className='login'>
         <div className='signIn'>
           <div className='googleBox'>
@@ -61,8 +53,7 @@ const SignIn = (props) => {
         </div>
 
       </div>
-      
-      {/* <Footer/> */}
+
     </>
   )
 }

@@ -5,13 +5,14 @@ body {
     color: #ffffff;
     margin-left: 0;
     padding-left: 0;
-    /* overflow: hidden; */
+    
 }
 
-button{
+button {
     border: none;
 }
-input{
+
+input {
     border: none;
 }
 
@@ -264,12 +265,17 @@ h3 {
 
 .message-send {
     color: #000000;
-    padding: 8px;
+    padding: 8px 10px;
     /* font-size: 10px; */
     font-weight: bold;
     border-radius: 50px;
     background-color: rgb(100, 214, 100);
     cursor: pointer;
+    margin: 5px;
+}
+
+.message-send:hover {
+    transform: scale(1.1);
 }
 
 .message-input {
@@ -278,6 +284,7 @@ h3 {
     padding: 8px;
     border-radius: 5px;
     margin-right: 5px;
+    margin: 5px;
 }
 
 .homeButton {
@@ -288,6 +295,12 @@ h3 {
     cursor: pointer;
     border-radius: 3px;
     text-align: center;
+    font-weight: bold;
+}
+
+.homeButton:hover {
+    color: aliceblue;
+    background-color: #4c1b9b;
 }
 
 .signout-Button {
@@ -297,16 +310,24 @@ h3 {
     border-radius: 3px;
     cursor: pointer;
     margin-top: 20px;
+    font-weight: bold;
+
 }
 
-.deleteRoom{
+.signout-Button:hover {
+    color: aliceblue;
+    background-color: #1d1b9b;
+}
+
+
+/* .deleteRoom{
     padding: 10px;
     color: #080d3b;
     background-color: #dae0fa;
     border-radius: 3px;
     cursor: pointer;
     margin-bottom: 20px;
-}
+} */
 
 
 
@@ -362,6 +383,8 @@ h3 {
         width: 80%;
     }
 
-
+    .signout-Button {
+        margin-left: 30px;
+    }
 
 }
