@@ -4,6 +4,13 @@ import { collection, getDocs, query } from 'firebase/firestore'
 import Chat from './Chat';
 import { useNavigate } from 'react-router-dom';
 
+
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import { Button } from '@mui/material';
+
 const Rooms = () => {
 
     const [displayRooms, setDisplayRooms] = useState([]);
@@ -43,23 +50,37 @@ const Rooms = () => {
     })
 
     return (
-        <div>
-            <h2>Available Rooms</h2>
+        <>
 
-            <div className='room'>
-                {filteredRoom.map((room) => {
-                    return <div className='roomCard' key={room.id}>
-                        <p className='roomCard-name' >{room}</p>
-                        <p>
-                            <button className='signIn-button' onClick={() => redirectToChatRoom(room)} >Enter</button>
-                        </p>
-                    </div>
-                })}
+            <div>
+                <h2>Available Rooms</h2>
+
+                <div>
+                    {filteredRoom.map((room) => {
+                        return   <Card key={room.id} sx={{ maxWidth: 345, maxHeight: 190,  margin:3}} >
+                           
+                            <CardMedia
+                                component="img"
+                                height="100"
+                                image="https://mui.com/static/images/cards/live-from-space.jpg"
+                                alt={room}
+                            />
+                             <CardHeader sx={{ maxHeight:3, }}                             
+                                title={room.toUpperCase()}
+                            />
+                            <CardContent>
+                                <Button size="small"
+                                 variant="contained" onClick={() => redirectToChatRoom(room)} 
+                             color="warning"
+                                >Enter</Button>
+                            </CardContent>
+                        </Card>
+                    })}
+                </div>
+
+
             </div>
-
-            {roomName && <Chat roomName={roomName} />}
-
-        </div>
+        </>
     )
 }
 

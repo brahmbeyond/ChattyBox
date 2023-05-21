@@ -15,12 +15,13 @@ function App() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
   const [isRoom, setIsRoom] = useState(false);
 
+
   return (
     <>
       <Router>
 
         <Routes>
-          <Route path="/" element={isAuth ? <EnterRoom setIsRoom={setIsRoom} isRoom={isRoom} /> : <SignIn setIsAuth={setIsAuth} />} />
+          <Route path="/" element={isAuth ? <EnterRoom /> : <SignIn setIsAuth={setIsAuth} />} />
           <Route exact path="/chat/:roomName" element={<Chat />} />
           <Route path="*" element={<Error />} />
 

@@ -3,6 +3,8 @@ import { signOut } from 'firebase/auth'
 import { auth } from '../firebase-config'
 import Cookies from 'universal-cookie'
 import { useNavigate } from 'react-router-dom'
+import { Button } from '@mui/material'
+
 
 const cookies = new Cookies();
 
@@ -21,7 +23,10 @@ const SignOut = (props) => {
 
   return (
     <div>
-      <button className='signout-Button' onClick={logout} >Sign Out</button>
+       <Button color="warning" variant="contained" onClick={logout}
+       sx={{my:2}}
+       >Sign Out</Button>
+  
     </div>
   )
 }
