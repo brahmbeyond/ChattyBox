@@ -4,13 +4,13 @@
 
 # ChattyBox App
 
-It's a webapp made in React JS with Firebase.
-The main purpose of this app was to learn the working of Firebase's Authentication and Firestore.
+It's a webapp made in React JS with Firebase and Material UI.
+The purpose of this app was to learn the working of Firebase's Authentication and Firestore CRUD Operations.
 
-First user has to login with ither Gmail or Github.
+First user has to login with either Gmail or Github.
 Then there are some available rooms present , user can select from them or can create new room.
 
-There in rooms , users can chat.
+Then there in rooms , users can chat .
 
 
 ## Demo
