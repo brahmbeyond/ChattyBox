@@ -62,7 +62,7 @@ const Rooms = () => {
                             <CardMedia
                                 component="img"
                                 height="100"
-                                image="https://mui.com/static/images/cards/live-from-space.jpg"
+                                image="https://i.ibb.co/37CYfXM/OIG.jpg"
                                 alt={room}
                             />
                              <CardHeader sx={{ maxHeight:3, }}                             

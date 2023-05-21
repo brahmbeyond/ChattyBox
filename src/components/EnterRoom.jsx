@@ -59,7 +59,7 @@ const EnterRoom = () => {
                         <CardMedia
                             component="img"
                             sx={{ width: 151 }}
-                            image="https://mui.com/static/images/cards/live-from-space.jpg"
+                            image="https://i.ibb.co/vdW5R8n/OIG.jpg"
                         />
                     </Card>
 
