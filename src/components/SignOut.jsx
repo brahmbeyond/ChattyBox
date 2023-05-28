@@ -16,17 +16,16 @@ const SignOut = (props) => {
     await signOut(auth);
     cookies.remove("auth-token");
     props.setIsAuth(false);
-    props.setIsRoom(false);
     navigate('/')
 
   }
 
   return (
     <div>
-       <Button color="warning" variant="contained" onClick={logout}
-       sx={{my:2}}
-       >Sign Out</Button>
-  
+      <Button color="warning" variant="contained" onClick={logout}
+        sx={{ my: 2 }}
+      >Sign Out</Button>
+
     </div>
   )
 }

@@ -13,7 +13,6 @@ const cookies = new Cookies();
 
 function App() {
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"));
-  const [isRoom, setIsRoom] = useState(false);
 
 
   return (
@@ -24,9 +23,8 @@ function App() {
           <Route path="/" element={isAuth ? <EnterRoom /> : <SignIn setIsAuth={setIsAuth} />} />
           <Route exact path="/chat/:roomName" element={<Chat />} />
           <Route path="*" element={<Error />} />
-
         </Routes>
-        {isAuth && <SignOut setIsAuth={setIsAuth} setIsRoom={setIsRoom} isRoom={isRoom} />}
+        {isAuth && <SignOut setIsAuth={setIsAuth} />}
         <Footer />
       </Router>
     </>

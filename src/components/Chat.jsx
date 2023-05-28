@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { db, auth } from '../firebase-config'
 import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where, deleteDoc, doc, updateDoc } from 'firebase/firestore'
-import { useParams } from 'react-router-dom';
-import { useNavigate } from "react-router-dom"
-import CssBaseline from '@mui/material/CssBaseline';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Button, Fab, Grid, TextField } from '@mui/material';
+import { Button, Fab, Grid } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -16,23 +14,34 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
-// import moduleName from '@'
 import SendIcon from '@mui/icons-material/Send';
-import { red } from '@mui/material/colors';
+
 
 const Chat = () => {
+    const [text, setText] = useState("");
+    // const [roomPassword, setRoomPassword] = useState("");
+    const [displayMessages, setDisplayMessages] = useState([]);
+    // const [editRoomName, setEditRoomName] = useState("");
+    const listRef = useRef(null);
+    //room poassword extract with useloaction , that was sent with use navigate hook
+    const loacation = useLocation();
+    const roomPassword = loacation.state.password;
 
     const { roomName } = useParams();
-    const [text, setText] = useState("");
-    const [displayMessages, setDisplayMessages] = useState([]);
-    const [editRoomName, setEditRoomName] = useState("");
+
     const navigate = useNavigate();
 
     const messageRef = collection(db, "messages");
 
     useEffect(() => {
-        const queryMessages = query(messageRef, where("roomName", "==", roomName), orderBy("createdAt"))
+        // Scroll to the last list item when displayMessages change
+        if (listRef.current) {
+            listRef.current.scrollTop = listRef.current.scrollHeight;
+        }
+    }, [displayMessages]);
 
+    useEffect(() => {
+        const queryMessages = query(messageRef, where("roomName", "==", roomName), orderBy("createdAt"))
         const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
             let messages = [];
             snapshot.forEach((doc) => {
@@ -42,10 +51,19 @@ const Chat = () => {
         });
 
         return () => unsuscribe();
+
+
     }, [roomName])
 
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            sendMessage(event);
+        }
+    };
     const sendMessage = async (event) => {
         event.preventDefault();
+
         if (text === "") return;
 
         await addDoc(messageRef, {
@@ -55,11 +73,12 @@ const Chat = () => {
             roomName: roomName,
             email: auth.currentUser.email,
             pic: auth.currentUser.photoURL,
-
+            roomPassword,
         })
 
         setText("");
     }
+
 
 
     const deleteRoom = () => {
@@ -79,28 +98,33 @@ const Chat = () => {
     //     await deleteDoc(messageRef);
 
     // }
-// const updateRoomName=()=>{
-//     const RoomREf = doc(db, "messages", roomName);
-//     displayMessages.map((msg) => {
-//         const messageRef = doc(db, "messages", msg.id);
-//         updateDoc(messageRef,{roomName:editRoomName});
-       
-//     })
-// }
+    // const updateRoomName=()=>{
+    //     const RoomREf = doc(db, "messages", roomName);
+    //     displayMessages.map((msg) => {
+    //         const messageRef = doc(db, "messages", msg.id);
+    //         updateDoc(messageRef,{roomName:editRoomName});
+
+    //     })
+    // }
 
     return (
 
         <>
-            {/* <CssBaseline /> */}
+
+            {/* <img src={auth.currentUser.photoURL} alt="f" /> */}
             <Container maxWidth="md" >
-                <Box sx={{ bgcolor: '#060b22'}} pt={2} >
+                <Box sx={{ bgcolor: '#060b22', }} pt={2} pb={1}  >
                     <Grid container >
 
-                        <Grid xs={6}>
+                        <Grid xs={4}>
 
-                            <Button color="warning" variant="contained" onClick={deleteRoom} >Delete Room</Button>
+                            <Button color="warning" variant="contained" onClick={deleteRoom} >Delete</Button>
                         </Grid>
-                        <Grid xs={6}>
+                        <Grid xs={4} display="flex" justifyContent="space-evenly" alignItems="center">
+
+                            <Avatar alt="Remy Sharp" src={auth.currentUser.photoURL} sx={{ margin: 'auto' }} />  {auth.currentUser.displayName}
+                        </Grid>
+                        <Grid xs={4}>
 
                             <Button color="warning" variant="contained" onClick={() => navigate('/')}>Home</Button>
                         </Grid>
@@ -114,7 +138,7 @@ const Chat = () => {
                         {/* <input type="text" value={editRoomName} onChange={(e)=>setEditRoomName(e.target.value)}/>
                         <button onClick={updateRoomName}>hi</button> */}
                     </div>
-                    <List >
+                    <List ref={listRef} sx={{ height: '65vh', overflow: 'auto', bgcolor: '#181a24', }}>
                         {displayMessages.map((msg) => {
                             return <>
 
@@ -139,7 +163,7 @@ const Chat = () => {
                                         }
                                     />
                                 </ListItem>
-                                
+
                                 <Divider variant="inset" component="li" />
                             </>
 
@@ -149,11 +173,11 @@ const Chat = () => {
                     <Box
                         display="flex"
                         justifyContent="center"
-                        mb={5}
+                        my={3}
                     >
                         <Paper
                             component="form"
-                            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 1 / 2, textAlign: 'center' }}
+                            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '50vw', textAlign: 'center' }}
                         >
 
                             <InputBase
@@ -162,6 +186,7 @@ const Chat = () => {
                                 inputProps={{ 'aria-label': 'search google maps' }}
                                 value={text}
                                 onChange={(e) => setText(e.target.value)}
+                                onKeyPress={handleKeyPress}
                             />
 
                         </Paper>
@@ -169,8 +194,9 @@ const Chat = () => {
                             sx={{ ml: 1 }
 
                             }
+                            onClick={sendMessage}
                         >
-                            <SendIcon onClick={sendMessage} />
+                            <SendIcon />
                         </Fab>
 
                     </Box>

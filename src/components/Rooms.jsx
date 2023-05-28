@@ -1,33 +1,39 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../firebase-config'
-import { collection, getDocs, query } from 'firebase/firestore'
-import Chat from './Chat';
-import { useNavigate } from 'react-router-dom';
-
-
+import { collection, getDocs, query, where } from 'firebase/firestore'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import { Button } from '@mui/material';
+import EnterRoomModal from './EnterRoomModal';
+
+
 
 const Rooms = () => {
-
-    const [displayRooms, setDisplayRooms] = useState([]);
     const [roomName, setRoomName] = useState("");
-    const history = useNavigate();
+    const [displayRooms, setDisplayRooms] = useState([]);
+    const [roomPassword, setRoomPassword] = useState("");
+    const [open, setOpen] = useState(false);
+    const collectionRef = collection(db, "messages");
 
     const redirectToChatRoom = (room) => {
-        setRoomName(room)
+        const q = query(collectionRef, where("roomName", "==", room));
 
-        history(`./Chat/${room}`)
-
+        const getRoom = async () => {
+            const querySnapshot = await getDocs(q);
+            let data = [];
+            querySnapshot.forEach((doc) => {
+                data.push({ ...doc.data(), id: doc.id });
+            });
+            setRoomPassword(data[0].roomPassword)
+            setRoomName(room);
+            setOpen(true);
+        }
+        getRoom();
     }
 
-
-
-    const roomRef = collection(db, "messages")
-    const queryRooms = query(roomRef);
+    const queryRooms = query(collectionRef);
     const getAll = async () => {
         const querySnapshot = await getDocs(queryRooms);
         let data = [];
@@ -52,36 +58,41 @@ const Rooms = () => {
     return (
         <>
 
+            {open && <EnterRoomModal roomName={roomName} heading={"Enter Room "} password={roomPassword} open={open} setOpen={setOpen} buttonName={"Verify Password"} />}
+
+
+
+
             <div>
                 <h2>Available Rooms</h2>
 
                 <div>
                     {filteredRoom.map((room) => {
-                        return   <Card key={room.id} sx={{ maxWidth: 345, maxHeight: 190,  margin:3}} >
-                           
+                        return <Card key={room.id} sx={{ maxWidth: 345, maxHeight: 190, margin: 3 }} >
+
                             <CardMedia
                                 component="img"
                                 height="100"
                                 image="https://i.ibb.co/37CYfXM/OIG.jpg"
                                 alt={room}
                             />
-                             <CardHeader sx={{ maxHeight:3, }}                             
+                            <CardHeader sx={{ maxHeight: 3, }}
                                 title={room.toUpperCase()}
                             />
                             <CardContent>
                                 <Button size="small"
-                                 variant="contained" onClick={() => redirectToChatRoom(room)} 
-                             color="warning"
+                                    variant="contained" onClick={() => redirectToChatRoom(room)}
+                                    color="warning"
                                 >Enter</Button>
                             </CardContent>
                         </Card>
                     })}
                 </div>
 
-
             </div>
         </>
     )
 }
+
 
 export default Rooms
