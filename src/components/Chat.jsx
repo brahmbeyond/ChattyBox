@@ -122,7 +122,10 @@ const Chat = () => {
                         </Grid>
                         <Grid xs={4} display="flex" justifyContent="space-evenly" alignItems="center">
 
-                            <Avatar alt="Remy Sharp" src={auth.currentUser.photoURL} sx={{ margin: 'auto' }} />  {auth.currentUser.displayName}
+                            <Avatar alt="Remy Sharp" src={auth.currentUser.photoURL} sx={{ margin: 'auto' ,border:'3px solid orangered'}} /> 
+
+
+                            <span style={{fontWeight:'bold',color:'orangered'}}> {auth.currentUser.displayName}</span>
                         </Grid>
                         <Grid xs={4}>
 
@@ -134,7 +137,7 @@ const Chat = () => {
                     </Grid>
 
                     <div style={{ margin: 30 }}>
-                        <h2 >Room Name: {roomName}</h2>
+                        <h2 >Room Name : {roomName.toUpperCase()}</h2>
                         {/* <input type="text" value={editRoomName} onChange={(e)=>setEditRoomName(e.target.value)}/>
                         <button onClick={updateRoomName}>hi</button> */}
                     </div>
@@ -190,7 +193,7 @@ const Chat = () => {
                             />
 
                         </Paper>
-                        <Fab color="success" size="small" aria-label="add"
+                        <Fab color="warning" size="small" aria-label="add"
                             sx={{ ml: 1 }
 
                             }

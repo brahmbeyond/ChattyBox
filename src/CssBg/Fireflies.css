@@ -1,0 +1,21 @@
+.firefly {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: hsl(Math.random() * 360, 55%, 55%);
+  animation : twinkle 3s infinite;
+  box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+}
+
+@keyframes twinkle {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+  }
+}

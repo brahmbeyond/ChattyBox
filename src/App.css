@@ -1,15 +1,29 @@
 body {
-    background-color: rgb(2, 2, 15);
+    /* background: 
+    radial-gradient(black 3px, transparent 4px),
+    radial-gradient(black 3px, transparent 4px),
+    linear-gradient(#fff 4px, transparent 0),
+    linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+    linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+  #fff;
+  background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+  background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px; */
+  background-color: #2d343f;
+
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #ffffff;
-    margin-left: 0;
-    padding-left: 0;
+    margin:0;
+   
+    
+
+
     
 }
 
 button {
     border: none;
+    
 }
 
 input {
@@ -19,9 +33,10 @@ input {
 h1,
 h2,
 h3 {
-    background: -webkit-linear-gradient(#ffffff, #dae0fa);
+    /* background: -webkit-linear-gradient(#ffffff, #dae0fa);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
+    color:#ffffff;
 }
 
 
@@ -71,6 +86,7 @@ h3 {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-color: #ffffff;
     /* This is optional and depends on your specific layout needs */
 }
 
@@ -83,6 +99,7 @@ h3 {
 
 
 .signIn {
+    background-color: #000000;
     /* margin: auto; */
     display: flex;
     /* flex-direction: column; */
@@ -92,15 +109,23 @@ h3 {
     /* This is optional and depends on your specific layout needs */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-
+.signIn-h1{
+    color: #000000;
+}
 .signIn-button {
+    font-weight: bold;
     padding: 7px 10px;
-    background-color: rgb(248, 0, 0);
-    color: aliceblue;
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition-duration: 0.4s;
+    display: flex;
+    margin:auto;
+    align-items: center;
+    gap: 5px;
+    /* justify-content:space-between; */
 }
 
 .signIn-button:hover {
@@ -111,18 +136,19 @@ h3 {
 }
 
 .github {
-    background-color: rgb(255, 255, 255);
-    color: black;
+    
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
 }
 
 .github:hover {
-    background-color: #000000;
-    color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
 }
 
 .googleBox,
 .githubBox {
-    background-color: rgb(9, 24, 43);
+    background-color: rgb(255, 255, 255);
     padding: 100px;
     border-radius: 10px;
     color: #000000;
@@ -132,19 +158,27 @@ h3 {
 }
 
 
-.googleBox:hover {
+/* .googleBox:hover {
     background-image: linear-gradient(to right, rgba(221, 201, 201, 0), rgb(8, 21, 78));
 
-}
+} */
 
-.githubBox:hover {
+/* .githubBox:hover {
     background-image: linear-gradient(to right, rgba(221, 201, 201, 0), rgb(8, 21, 78));
 
-}
+} */
 
 .footer{
-    
+    /* background-color: #ffffff; */
+    margin: 0;
+    padding: 1px;
+    color:#ffffff
 }
+
+
+
+
+
 @media only screen and (max-width: 768px) {
     .signIn {
         flex-direction: column;
