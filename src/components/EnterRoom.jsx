@@ -9,6 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { Button, TextField } from '@mui/material';
 import EnterRoomModal from './EnterRoomModal';
+import Fireflies from '../CssBg/Fireflies';
 
 
 const EnterRoom = () => {
@@ -51,6 +52,7 @@ const EnterRoom = () => {
 
     return (
         <>
+        {/* <Fireflies/> */}
             {/* modal for verify password */}
             {open && <EnterRoomModal roomName={roomName} heading={"Enter Room "} password={roomPassword} open={open} setOpen={setOpen} buttonName={"Verify Password"} />}
 
