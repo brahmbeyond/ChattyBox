@@ -84,6 +84,7 @@ const EnterRoom = () => {
 
                             </CardContent>
                         </Box>
+
                         <CardMedia
                             component="img"
                             sx={{ width: 151 }}

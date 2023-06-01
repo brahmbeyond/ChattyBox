@@ -69,12 +69,11 @@ const Rooms = () => {
                 <div>
                     {filteredRoom.map((room) => {
                         return <Card key={room.id} sx={{ maxWidth: 345, maxHeight: 190, margin: 3, bgcolor: 'rgb(5 14 30 / 59%)',color:'white' }} >
-
                             <CardMedia
                                 component="img"
                                 height="100"
-                                image="/public/images/roomVhat.jpg"
                                 alt={room}
+                                image="/public/images/roomVhat.jpg"
                             />
                             <CardHeader sx={{ maxHeight: 3, }}
                                 title={room.toUpperCase()}
