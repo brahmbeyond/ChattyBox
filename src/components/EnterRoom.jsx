@@ -84,10 +84,11 @@ const EnterRoom = () => {
 
                             </CardContent>
                         </Box>
+
                         <CardMedia
                             component="img"
                             sx={{ width: 151 }}
-                            image="/public/images/girl.jpg"
+                            image="/public/images/girlChat.jpg"
                         />
                     </Card>
                 </Grid>

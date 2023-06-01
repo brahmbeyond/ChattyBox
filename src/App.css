@@ -9,6 +9,7 @@ body {
   background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
   background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px; */
   /* background-color: #2d343f; */
+
   background-image: url('/public/images/pattern.png');
 background-size: cover;
     text-align: center;
@@ -48,6 +49,7 @@ h3 {
     font-size: 100px;
     color: rgba(11, 15, 77, 0.01);
     background-image: url("https://images.unsplash.com/photo-1499195333224-3ce974eecb47?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2cf549433129d4227d1879347b9e78ce&auto=format&fit=crop&w=1248&q=80");
+    /* background-image: url('/public/images/pattern.png'); */
     background-repeat: repeat;
     -webkit-background-clip: text;
     animation: animate 15s ease-in-out infinite;
