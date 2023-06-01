@@ -69,7 +69,7 @@ const EnterRoom = () => {
                 height:'100vh',
 
             }} >
-                    <Card sx={{ display: 'flex', maxWidth: 361 }}>
+                    <Card sx={{ display: 'flex', maxWidth: 361 , bgcolor: 'rgb(5 14 30 / 59%)',}}>
                         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                             <CardContent sx={{ flex: '1 0 auto' }}>
                                 <TextField
@@ -80,14 +80,14 @@ const EnterRoom = () => {
                                     value={roomName}
                                     onChange={(e) => setRoomName(e.target.value)}
                                 />
-                                <Button color="warning" onClick={checkRoom} variant="contained" sx={{ marginTop: 3 }}>Enter</Button>
+                                <Button color="info" onClick={checkRoom} variant="contained" sx={{ marginTop: 3 }}>Enter</Button>
 
                             </CardContent>
                         </Box>
                         <CardMedia
                             component="img"
                             sx={{ width: 151 }}
-                            image="https://i.ibb.co/vdW5R8n/OIG.jpg"
+                            image="/public/images/girl.jpg"
                         />
                     </Card>
                 </Grid>

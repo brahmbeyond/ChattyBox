@@ -19,6 +19,7 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+
 };
 
 
@@ -70,9 +71,10 @@ const EnterRoomModal = ({ roomName, password, open, setOpen, heading, buttonName
                         timeout: 500,
                     },
                 }}
+                
             >
                 <Fade in={open}>
-                    <Box sx={style}>
+                    <Box sx={style} className='my-element'>
                         <Typography id="transition-modal-title" variant="h6" sx={{ fontSize: 'bold' }}>
                             <strong>{heading} - {roomName.toUpperCase()}</strong>
                         </Typography>
