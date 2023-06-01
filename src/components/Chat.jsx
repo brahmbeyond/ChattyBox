@@ -24,10 +24,6 @@ const Chat = () => {
     const [displayMessages, setDisplayMessages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
 
-
-
-
-
     const listRef = useRef(null);
     //room poassword extract with useloaction , that was sent with use navigate hook
     const loacation = useLocation();
@@ -99,7 +95,7 @@ const Chat = () => {
             }
 
         } else {
-
+console.log("hi")
             // Create a storage reference with a unique name for the image file
             const storageRef = ref(storage, `Images/${selectedImage.name}`);
 
@@ -306,15 +302,18 @@ const Chat = () => {
                         </Paper>
 
                         {/* input for image */}
-                        <label htmlFor='uploadimg' > <Fab  color="info" size="small" aria-label="add"
+                        <label htmlFor='uploadimg' > 
+                        {/* <Fab  color="info" size="small" aria-label="add"
                             sx={{ ml: 1 }
                             }
                             onClick={sendMessage}
-                        >
-                          <ImageIcon/>
-                        </Fab>
+                        > */}
+                              
+                          <ImageIcon sx={{fontSize:'40px',borderRadius:'50px',color:'lightskyblue'}}/>
+                        {/* </Fab> */}
 </label>
-                        <input type="file" onChange={handleImageSelect} accept="image/*" id='uploadimg'  hidden/>
+<input type="file" onChange={handleImageSelect} accept="image/*" id='uploadimg'   hidden/>
+                      
 
                         <Divider sx={{ height: 25, m: 1,bgcolor:'white' }} orientation="vertical" />
 
