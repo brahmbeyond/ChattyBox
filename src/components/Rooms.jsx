@@ -73,7 +73,7 @@ const Rooms = () => {
                                 component="img"
                                 height="100"
                                 alt={room}
-                                image="/public/images/roomVhat.jpg"
+                                image="/public/images/boysChatRoom.jpg"
                             />
                             <CardHeader sx={{ maxHeight: 3, }}
                                 title={room.toUpperCase()}
