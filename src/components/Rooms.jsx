@@ -68,12 +68,12 @@ const Rooms = () => {
 
                 <div>
                     {filteredRoom.map((room) => {
-                        return <Card key={room.id} sx={{ maxWidth: 345, maxHeight: 190, margin: 3 }} >
+                        return <Card key={room.id} sx={{ maxWidth: 345, maxHeight: 190, margin: 3, bgcolor: 'rgb(5 14 30 / 59%)',color:'white' }} >
 
                             <CardMedia
                                 component="img"
                                 height="100"
-                                image="https://i.ibb.co/37CYfXM/OIG.jpg"
+                                image="/public/images/roomVhat.jpg"
                                 alt={room}
                             />
                             <CardHeader sx={{ maxHeight: 3, }}
@@ -82,7 +82,8 @@ const Rooms = () => {
                             <CardContent>
                                 <Button size="small"
                                     variant="contained" onClick={() => redirectToChatRoom(room)}
-                                    color="warning"
+                                    color="info"
+                                   
                                 >Enter</Button>
                             </CardContent>
                         </Card>

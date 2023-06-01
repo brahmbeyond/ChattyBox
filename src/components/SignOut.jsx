@@ -22,7 +22,7 @@ const SignOut = (props) => {
 
   return (
     <div>
-      <Button color="warning" variant="contained" onClick={logout}
+      <Button color="error" variant="contained" onClick={logout}
         sx={{ my: 2 }}
       >Sign Out</Button>
 

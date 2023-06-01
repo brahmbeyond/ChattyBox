@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { db, auth } from '../firebase-config'
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where, deleteDoc, doc, updateDoc } from 'firebase/firestore'
+import { db, auth, storage } from '../firebase-config'
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where, deleteDoc, doc } from 'firebase/firestore'
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -15,13 +15,19 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import InputBase from '@mui/material/InputBase';
 import SendIcon from '@mui/icons-material/Send';
-
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+// import '../App.css'
+import ImageIcon from '@mui/icons-material/Image';
 
 const Chat = () => {
     const [text, setText] = useState("");
-    // const [roomPassword, setRoomPassword] = useState("");
     const [displayMessages, setDisplayMessages] = useState([]);
-    // const [editRoomName, setEditRoomName] = useState("");
+    const [selectedImage, setSelectedImage] = useState(null);
+
+
+
+
+
     const listRef = useRef(null);
     //room poassword extract with useloaction , that was sent with use navigate hook
     const loacation = useLocation();
@@ -61,24 +67,112 @@ const Chat = () => {
             sendMessage(event);
         }
     };
+
+    const handleImageSelect = async (event) => {
+        const file = event.target.files[0];
+        setSelectedImage(file);
+
+
+    };
+
+
+
+
     const sendMessage = async (event) => {
         event.preventDefault();
 
-        if (text === "") return;
+        if (!selectedImage) {
+            if (text === "") {
+                return;
+            } else {
+                await addDoc(messageRef, {
+                    text,
+                    image: "",
+                    createdAt: serverTimestamp(),
+                    user: auth.currentUser.displayName,
+                    roomName: roomName,
+                    email: auth.currentUser.email,
+                    pic: auth.currentUser.photoURL,
+                    roomPassword,
+                })
+                setText("");
+            }
 
-        await addDoc(messageRef, {
-            text,
-            createdAt: serverTimestamp(),
-            user: auth.currentUser.displayName,
-            roomName: roomName,
-            email: auth.currentUser.email,
-            pic: auth.currentUser.photoURL,
-            roomPassword,
-        })
+        } else {
 
-        setText("");
+            // Create a storage reference with a unique name for the image file
+            const storageRef = ref(storage, `Images/${selectedImage.name}`);
+
+            // Upload the image file to Firebase Storage
+            await uploadBytes(storageRef, selectedImage);
+
+            // Get the download URL of the uploaded image
+            const downloadURL = await getDownloadURL(storageRef);
+
+            // Add a new message containing the image URL to the Firestore collection
+            await addDoc(messageRef, {
+                text: '',
+                image: downloadURL,
+                createdAt: serverTimestamp(),
+                user: auth.currentUser.displayName,
+                roomName: roomName,
+                email: auth.currentUser.email,
+                pic: auth.currentUser.photoURL,
+                roomPassword,
+            });
+
+            // Clear the selected image
+            setSelectedImage(null);
+        }
+
+
+
+
+
+        // if (text === "") return;
+
+        // await addDoc(messageRef, {
+        //     text,
+        //     createdAt: serverTimestamp(),
+        //     user: auth.currentUser.displayName,
+        //     roomName: roomName,
+        //     email: auth.currentUser.email,
+        //     pic: auth.currentUser.photoURL,
+        //     roomPassword,
+        // })
+
+        // setText("");
     }
 
+
+
+    // const handleImageUpload = async () => {
+    //     if (!selectedImage) return;
+
+    //     // Create a storage reference with a unique name for the image file
+    //     const storageRef = ref(storage, `Images/${selectedImage.name}`);
+
+    //     // Upload the image file to Firebase Storage
+    //     await uploadBytes(storageRef, selectedImage);
+
+    //     // Get the download URL of the uploaded image
+    //     const downloadURL = await getDownloadURL(storageRef);
+
+    //     // Add a new message containing the image URL to the Firestore collection
+    //     await addDoc(messageRef, {
+    //         text: '',
+    //         image: downloadURL,
+    //         createdAt: serverTimestamp(),
+    //         user: auth.currentUser.displayName,
+    //         roomName: roomName,
+    //         email: auth.currentUser.email,
+    //         pic: auth.currentUser.photoURL,
+    //         roomPassword,
+    //     });
+
+    //     // Clear the selected image
+    //     setSelectedImage(null);
+    // };
 
 
     const deleteRoom = () => {
@@ -93,19 +187,10 @@ const Chat = () => {
         }
 
     }
-    // const deleteMessage = async (id) => {
-    //     const messageRef = doc(db, "messages", id);
-    //     await deleteDoc(messageRef);
 
-    // }
-    // const updateRoomName=()=>{
-    //     const RoomREf = doc(db, "messages", roomName);
-    //     displayMessages.map((msg) => {
-    //         const messageRef = doc(db, "messages", msg.id);
-    //         updateDoc(messageRef,{roomName:editRoomName});
 
-    //     })
-    // }
+
+
 
     return (
 
@@ -113,23 +198,23 @@ const Chat = () => {
 
             {/* <img src={auth.currentUser.photoURL} alt="f" /> */}
             <Container maxWidth="md" >
-                <Box sx={{ bgcolor: '#060b22', }} pt={2} pb={1}  >
+                <Box sx={{ bgcolor: '#060b22b8', }} pt={2} pb={1}  >
                     <Grid container >
 
                         <Grid xs={4}>
 
-                            <Button color="warning" variant="contained" onClick={deleteRoom} >Delete</Button>
+                            <Button  color="info" variant="contained" onClick={deleteRoom} >Delete</Button>
                         </Grid>
                         <Grid xs={4} display="flex" justifyContent="space-evenly" alignItems="center">
 
-                            <Avatar alt="Remy Sharp" src={auth.currentUser.photoURL} sx={{ margin: 'auto' ,border:'3px solid orangered'}} /> 
+                            <Avatar alt="Remy Sharp" src={auth.currentUser.photoURL} sx={{ margin: 'auto', border: '3px solid skyblue' }} />
 
 
-                            <span style={{fontWeight:'bold',color:'orangered'}}> {auth.currentUser.displayName}</span>
+                            <span style={{ fontWeight: 'bold', color: 'skyblue' }}> {auth.currentUser.displayName}</span>
                         </Grid>
                         <Grid xs={4}>
 
-                            <Button color="warning" variant="contained" onClick={() => navigate('/')}>Home</Button>
+                            <Button  color="info" variant="contained" onClick={() => navigate('/')}>Home</Button>
                         </Grid>
 
 
@@ -138,23 +223,26 @@ const Chat = () => {
 
                     <div style={{ margin: 30 }}>
                         <h2 >Room Name : {roomName.toUpperCase()}</h2>
-                        {/* <input type="text" value={editRoomName} onChange={(e)=>setEditRoomName(e.target.value)}/>
-                        <button onClick={updateRoomName}>hi</button> */}
-                    </div>
-                    <List ref={listRef} sx={{ height: '65vh', overflow: 'auto', bgcolor: '#181a24', }}>
-                        {displayMessages.map((msg) => {
-                            return <>
 
-                                <ListItem alignItems="flex-start" key={msg.id}>
+                    </div>
+                    <List ref={listRef} sx={{ height: '65vh', overflow: 'auto', bgcolor: '#05091ce8', }}>
+                        {displayMessages.map((msg) => {
+                            const isCurrentUser = auth.currentUser.email === msg.email;
+                            return <>
+                                {msg.text && <ListItem alignItems="flex-start" key={msg.id}
+                        
+                            style={{ flexDirection: isCurrentUser ? "row-reverse" : "row",gap:'15px',padding:'10px' }}
+                                >
                                     <ListItemAvatar>
-                                        <Avatar alt="Remy Sharp" src={msg.pic} />
+                                        <Avatar alt="Remy Sharp" src={msg.pic} sx={{ margin: 'auto', border:isCurrentUser ? '3px solid skyblue':'3px solid #24decd' }}/>
                                     </ListItemAvatar>
                                     <ListItemText
+                                          sx={{ color: isCurrentUser ? "skyblue" : "#24decd",textAlign: isCurrentUser ? 'right' : 'left' ,fontWeight:'bold' }}
                                         primary={msg.user}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography
-                                                    sx={{ display: 'inline' }}
+                                                    sx={{ display: 'inline',wordWrap:'break-word' }}
                                                     component="span"
                                                     variant="body2"
                                                     color="white"
@@ -165,9 +253,32 @@ const Chat = () => {
                                             </React.Fragment>
                                         }
                                     />
-                                </ListItem>
+                                </ListItem>}
 
-                                <Divider variant="inset" component="li" />
+                                {msg.image && (
+                                    <ListItem alignItems="flex-start" key={msg.createdAt}
+                                    style={{ flexDirection: isCurrentUser ? "row-reverse" : "row",gap:'15px',padding:'0px' }}
+                                    >
+                                        <ListItemAvatar>
+                                            <Avatar alt="Remy Sharp" src={msg.pic} sx={{ margin: 'auto', border:isCurrentUser ? '3px solid skyblue':'3px solid #24decd' }}/>
+                                        </ListItemAvatar>
+                                        <ListItemText
+                                            sx={{ color: isCurrentUser ? "skyblue" : "",textAlign: isCurrentUser ? 'right' : 'left'  }}
+                                            primary={msg.user}
+                                            secondary={
+                                                <React.Fragment>
+                                                    {/* Render the image */}
+                                                    <img src={msg.image} alt="Image" width='200px' />
+
+                                                </React.Fragment>
+
+                                            }
+                                        />
+                                    </ListItem>
+                                )}
+
+                                <Divider variant="middle" component="li"
+                                sx={{ bgcolor:'rgb(22 22 37 / 41%)' }} />
                             </>
 
                         })}
@@ -193,9 +304,22 @@ const Chat = () => {
                             />
 
                         </Paper>
-                        <Fab color="warning" size="small" aria-label="add"
-                            sx={{ ml: 1 }
 
+                        {/* input for image */}
+                        <label htmlFor='uploadimg' > <Fab  color="info" size="small" aria-label="add"
+                            sx={{ ml: 1 }
+                            }
+                            onClick={sendMessage}
+                        >
+                          <ImageIcon/>
+                        </Fab>
+</label>
+                        <input type="file" onChange={handleImageSelect} accept="image/*" id='uploadimg'  hidden/>
+
+                        <Divider sx={{ height: 25, m: 1,bgcolor:'white' }} orientation="vertical" />
+
+                        <Fab  color="info" size="small" aria-label="add"
+                            sx={{ ml: 0 }
                             }
                             onClick={sendMessage}
                         >

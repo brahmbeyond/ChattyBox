@@ -8,21 +8,21 @@ body {
   #fff;
   background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
   background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px; */
-  background-color: #2d343f;
-
+  /* background-color: #2d343f; */
+  background-image: url('/public/images/pattern.png');
+background-size: cover;
     text-align: center;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #ffffff;
     margin:0;
    
-    
-
-
-    
 }
+
+
 
 button {
     border: none;
+
     
 }
 
@@ -86,7 +86,7 @@ h3 {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     /* This is optional and depends on your specific layout needs */
 }
 
@@ -99,7 +99,7 @@ h3 {
 
 
 .signIn {
-    background-color: #000000;
+    /* background-color: #000000; */
     /* margin: auto; */
     display: flex;
     /* flex-direction: column; */
@@ -109,9 +109,7 @@ h3 {
     /* This is optional and depends on your specific layout needs */
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.signIn-h1{
-    color: #000000;
-}
+
 .signIn-button {
     font-weight: bold;
     padding: 7px 10px;
@@ -148,11 +146,12 @@ h3 {
 
 .googleBox,
 .githubBox {
-    background-color: rgb(255, 255, 255);
+    
+    background-color: rgb(5 14 30 / 59%);
     padding: 100px;
     border-radius: 10px;
-    color: #000000;
-    box-shadow: 10px 10px 5px rgb(224, 224, 224);
+    color: #ffffff;
+    box-shadow: 10px 10px 5px rgb(43, 70, 129);
     margin: 20px;
 
 }
@@ -190,8 +189,30 @@ h3 {
 
     .googleBox,
     .githubBox {
-        padding: 50px;
+        padding: 45px;
     }
 
 
 }
+
+
+
+.current-user-message {
+    text-align: right;
+  }
+
+  @media screen and (max-width: 600px) {
+    .my-element {
+      max-width: 290px;
+    }
+    .googleBox,
+    .githubBox {
+        padding: 30px;
+    }
+
+
+
+
+
+
+  }
