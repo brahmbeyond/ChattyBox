@@ -7,10 +7,11 @@
 It's a webapp made in React JS with Firebase and Material UI.
 The purpose of this app was to learn the working of Firebase's Authentication and Firestore CRUD Operations.
 
+
 First user has to login with either Gmail or Github.
 Then there are some available rooms present , user can select from them or can create new room.
 
-Then there in rooms , users can chat .
+Then there in rooms , users can chat (send messages,images,files).
 
 
 ## Demo
@@ -59,11 +60,12 @@ Start the server
 - Google/Github Sign
 - Rooms
 - Real Time Chat
+- Images,Files send Option
 
 
 ## Lessons Learned
 
-Learned Authentication and Online writing and reading of data  using Firebase Authentication and Firebase Firestore.
+Learned Authentication and Online managing of data using Firebase Authentication and Firebase Firestore.
 
 
 
