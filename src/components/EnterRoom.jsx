@@ -10,6 +10,7 @@ import CardMedia from '@mui/material/CardMedia';
 import { Button, TextField } from '@mui/material';
 import EnterRoomModal from './EnterRoomModal';
 import Fireflies from '../CssBg/Fireflies';
+import Notification from './Notification';
 
 
 const EnterRoom = () => {
@@ -60,7 +61,12 @@ const EnterRoom = () => {
             {create && <EnterRoomModal roomName={roomName} heading={"Create Room "} password=" " open={create} setOpen={setCreate} buttonName={"Set Password"} />}
 
 
+<Notification/>
+
+
             <Grid container spacing={2} >
+
+
                 <Grid xs={12} sm={4} >
                     <Rooms />
                 </Grid>
