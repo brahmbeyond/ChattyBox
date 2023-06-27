@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react';
+import { useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignIn from './components/SignIn.jsx';
 import SignOut from './components/SignOut';
@@ -8,7 +8,7 @@ import Chat from './components/Chat';
 import './App.css'
 import Error from './components/Error.jsx'
 import Footer from './components/Footer.jsx';
-import Fireflies from './CssBg/Fireflies.jsx';
+
 
 const cookies = new Cookies();
 
@@ -37,7 +37,7 @@ function App() {
         <h2><Fireflies/></h2>
         </div> */}
       <Router>
-
+   
         <Routes>
           <Route path="/" element={isAuth ? <EnterRoom /> : <SignIn setIsAuth={setIsAuth} />} />
           <Route exact path="/chat/:roomName" element={<Chat />} />

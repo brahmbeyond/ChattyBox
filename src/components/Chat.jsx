@@ -4,7 +4,9 @@ import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp, where,
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { Button, Fab, Grid } from '@mui/material';
+import { Button, Fab } from '@mui/material';
+// import Grid from '@mui/material/Unstable_Grid2';
+import Grid from '@mui/material/Grid';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
@@ -20,7 +22,7 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import ImageIcon from '@mui/icons-material/Image';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+// import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import DocumentPreview from './DocumentPreview';
 
 
@@ -191,7 +193,7 @@ const Chat = () => {
         <>
 
             {/* <img src={auth.currentUser.photoURL} alt="f" /> */}
-            <Container maxWidth="md" sx={{ px:{xs:'0',} }} >
+            <Container maxWidth="md" sx={{ px: { xs: '0', } }} >
                 <Box sx={{ bgcolor: '#060b22b8' }} pt={2} pb={1}  >
                     <Grid container >
 
@@ -308,9 +310,9 @@ const Chat = () => {
                         mx={1}
                     >
                         <Paper
-                        id="messageBox"
+                            id="messageBox"
                             component="form"
-                            sx={{ p: '1.5px 4px',mx:'5px',mr:{lg:'10px'}, display: 'flex', alignItems: 'center', width: {xs:'84vw'}, textAlign: 'center' }}
+                            sx={{ p: '1.5px 4px', mx: '5px', mr: { lg: '10px' }, display: 'flex', alignItems: 'center', width: { xs: '84vw' }, textAlign: 'center' }}
                         >
 
                             <InputBase
@@ -323,32 +325,32 @@ const Chat = () => {
                             />
 
 
-<label htmlFor="upload-image">
-                            <input
-                                accept="image/*"
-                                style={{ display: 'none' ,}}
-                                id="upload-image"
-                                type="file"
-                                onChange={handleImageSelect}
-                            />
-                            <Fab component="span" size="small" color="primary" aria-label="upload image">
-                                <ImageIcon />
-                            </Fab>
-                        </label>
+                            <label htmlFor="upload-image">
+                                <input
+                                    accept="image/*"
+                                    style={{ display: 'none', }}
+                                    id="upload-image"
+                                    type="file"
+                                    onChange={handleImageSelect}
+                                />
+                                <Fab component="span" size="small" color="primary" aria-label="upload image">
+                                    <ImageIcon />
+                                </Fab>
+                            </label>
 
-                        <Divider sx={{ height: '90%', m: 0.3, bgcolor: 'gray' }} orientation="vertical" />
+                            <Divider sx={{ height: '90%', m: 0.3, bgcolor: 'gray' }} orientation="vertical" />
 
-<label htmlFor="upload-file">
-    <input
-        style={{ display: 'none' }}
-        id="upload-file"
-        type="file"
-        onChange={handleFileSelect}
-    />
-    <Fab component="span" size="small" color="primary" aria-label="upload file">
-        <AttachFileIcon />
-    </Fab>
-</label>
+                            <label htmlFor="upload-file">
+                                <input
+                                    style={{ display: 'none' }}
+                                    id="upload-file"
+                                    type="file"
+                                    onChange={handleFileSelect}
+                                />
+                                <Fab component="span" size="small" color="primary" aria-label="upload file">
+                                    <AttachFileIcon />
+                                </Fab>
+                            </label>
 
                         </Paper>
 
@@ -357,9 +359,9 @@ const Chat = () => {
                             <ImageIcon sx={{ fontSize: '40px', borderRadius: '50px', color: 'lightskyblue' }} />
                         </label>
                         <input type="file" onChange={handleImageSelect} accept="image/*" id='uploadimg' hidden /> */}
-                       
 
-                       
+
+
 
                         {/* <label htmlFor='uploadFile' >
                             <AttachFileIcon sx={{ fontSize: '40px', borderRadius: '50px', color: 'lightskyblue' }} />
@@ -372,7 +374,7 @@ const Chat = () => {
                         {/* <Divider sx={{ height: 0, p: 0.2}} orientation="vertical" /> */}
 
                         <Fab color="info" size="small" aria-label="add"
-                            
+
                             onClick={sendMessage}
                         >
                             <SendIcon />
