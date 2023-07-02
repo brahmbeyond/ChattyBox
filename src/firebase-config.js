@@ -5,12 +5,12 @@ import { getFirestore } from '@firebase/firestore'
 import {getStorage} from '@firebase/storage'
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  apiKey: "AIzaSyDYErlxbG633MNxKS6YRJMkpqVP0fBDl5s",
   authDomain: "chattybox-fec19.firebaseapp.com",
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  projectId: "chattybox-fec19",
   storageBucket: "chattybox-fec19.appspot.com",
-  messagingSenderId: import.meta.env.VITE_FIREBASE_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  messagingSenderId: "251676718375",
+  appId: "1:251676718375:web:b577824c3363ca4750a502"
 };
 
 // Initialize Firebase
