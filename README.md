@@ -21,7 +21,8 @@ Website  - https://chattybox.netlify.app/
 ![demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODhiZGVjMTE3MTBmZGM3MDcyOGIzNGFjNDgyOGYyYmE5YjI0YTg4ZSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/z6HmLADErbCEQQuqOP/giphy.gif)
 
 
-
+## Blog
+for detailed information visit - https://brahm.code.blog/2023/08/02/201/
 
 ## Run Locally
 
