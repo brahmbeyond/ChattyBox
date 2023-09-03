@@ -18,7 +18,7 @@ Then there in rooms , users can chat (send messages,images,files).
 
 Website  - https://chattybox.netlify.app/
 
-![demo](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODhiZGVjMTE3MTBmZGM3MDcyOGIzNGFjNDgyOGYyYmE5YjI0YTg4ZSZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/z6HmLADErbCEQQuqOP/giphy.gif)
+![Untitled video - Made with Clipchamp (1)](https://github.com/autumn-absconds/ChattyBox/assets/65112908/d287c5eb-d658-4a55-a944-9260a80c906e)
 
 
 ## Blog
